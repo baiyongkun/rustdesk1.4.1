@@ -447,7 +447,10 @@ jobs:
         with:
           name: bridge-artifact
           path: ./
-
+          
+      - name: Make build.py executable
+        run: chmod + build.py
+        
       - name: Build rustdesk
         run: |
           ./build.py --flutter --hwcodec --unix-file-copy-paste
