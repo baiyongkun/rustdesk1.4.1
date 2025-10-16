@@ -6,7 +6,7 @@ env:
   VCPKG_BINARY_SOURCES: "clear;x-gha,readwrite"
   # for multiarch gcc compatibility
   # 更换为一个较新的、已知可用的 vcpkg commit，比如：
-  VCPKG_COMMIT_ID: "a8b16a3a3a5b3a3a5b3a3a5b3a3a5b3a3a5b3a3a"  # 请替换为真实较新 commit，见下方建议
+  VCPKG_COMMIT_ID: "120deac3062162151622ca4860575a33844ba10b"  # 请替换为真实较新 commit，见下方建议
 
 on:
   workflow_dispatch:
