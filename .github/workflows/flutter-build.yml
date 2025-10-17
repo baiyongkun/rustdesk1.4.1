@@ -1047,16 +1047,19 @@ jobs:
             ;;
           esac
           if ! bash ./flutter/build_android_deps.sh "${ANDROID_TARGET}"; then
-            find "${VCPKG_ROOT}/" -name "*.log" | while read -r _1; do
-              echo "$_1:"
+            echo "❌ Failed to build Android dependencies for target: ${ANDROID_TARGET}"
+            find "${VCPKG_ROOT}/" -name "*.log" | while read -r logfile; do
+              echo "📄 Log file: $logfile"
               echo "======"
-              cat "$_1"
+              cat "$logfile"
               echo "======"
               echo ""
             done
             exit 1
           fi
         shell: bash
+        env:
+          VCPKG_ROOT: ${{ github.workspace }}/vcpkg  # 或者你实际的 vcpkg 路径
 
       - name: Restore bridge files
         uses: actions/download-artifact@master
