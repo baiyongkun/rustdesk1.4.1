@@ -1,14 +1,14 @@
 name: Full Flutter CI
 
 on:
-  workflow_dispatch:
-  pull_request:
+  workflow_dispatch:    # ✅ 可手动在 GitHub UI 中点击 "Run workflow" 触发
+  pull_request:         # ✅ 当有 Pull Request 时触发
     paths-ignore:
     - "docs/**"
-    - "README.md"
-  push:
+    - "README.md"       # 忽略对 docs/ 和 README.md 的改动
+  push:                 # ✅ 当代码 Push 到仓库时触发
     branches:
-      - master
+      - master          # 仅针对 master 分支
     paths-ignore:
       - ".github/**"
       - "docs/**"
@@ -19,6 +19,6 @@ on:
 
 jobs:
   run-ci:
-    uses: ./.github/workflows/flutter-build.yml
+    uses: ./.github/workflows/flutter-build.yml    # 核心任务
     with:
-      upload-artifact: true
+      upload-artifact: true  #可能用于控制是否上传构建产物，比如 APK
