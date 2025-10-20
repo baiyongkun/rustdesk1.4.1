@@ -1032,6 +1032,7 @@ jobs:
 
       - name: Install vcpkg dependencies
         run: |
+          chmod +x ./flutter/build_android_deps.sh
           case ${{ matrix.job.target }} in
             aarch64-linux-android)
               ANDROID_TARGET=arm64-v8a
@@ -1046,7 +1047,7 @@ jobs:
               ANDROID_TARGET=x86
             ;;
           esac
-          if ! bash ./flutter/build_android_deps.sh "${ANDROID_TARGET}"; then
+          if ! sh ./flutter/build_android_deps.sh "${ANDROID_TARGET}"; then
             echo "❌ Failed to build Android dependencies for target: ${ANDROID_TARGET}"
             find "${VCPKG_ROOT}/" -name "*.log" | while read -r logfile; do
               echo "📄 Log file: $logfile"
